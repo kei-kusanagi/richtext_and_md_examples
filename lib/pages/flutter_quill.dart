@@ -7,6 +7,8 @@ import 'package:flutter_quill/flutter_quill.dart';
 import 'package:flutter_quill_extensions/flutter_quill_extensions.dart';
 import 'package:path/path.dart' as path;
 
+import '../utilities/read_save_file.dart';
+
 class QuillHomePage extends StatefulWidget {
   const QuillHomePage({super.key});
 
@@ -53,6 +55,46 @@ class _QuillHomePageState extends State<QuillHomePage> {
         title: Text('Flutter Quill Example'),
         actions: [
           IconButton(
+            icon: Icon(Icons.save),
+            onPressed: () {
+              final content = jsonEncode(_controller.document.toDelta().toJson());
+              if (kIsWeb) {
+                saveFileWeb(
+                  suggestedName: 'documento_quill.json',
+                  content: content,
+                  mimeType: 'application/json',
+                  accept: {
+                    'application/json': ['.json'],
+                  },
+                );
+              } else {
+                saveToMobile("quill_doc.json", content);
+              }
+            },
+          ),
+
+          IconButton(
+            icon: Icon(Icons.folder_open),
+            onPressed: () {
+              if (kIsWeb) {
+                openFileWeb((content) {
+                  setState(() {
+                    _controller.document = Document.fromJson(jsonDecode(content));
+                  });
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(SnackBar(content: Text('Archivo cargado')));
+                }, ".json");
+              } else {
+                readFile("quill_doc.json", (content) {
+                  setState(() {
+                    _controller.document = Document.fromJson(jsonDecode(content));
+                  });
+                }, "json");
+              }
+            },
+          ),
+          IconButton(
             onPressed: () {
               setState(() {
                 _controller.clear();
@@ -60,17 +102,6 @@ class _QuillHomePageState extends State<QuillHomePage> {
             },
             icon: Icon(Icons.cleaning_services_rounded),
           ),
-
-          // IconButton(
-          //   icon: const Icon(Icons.output),
-          //   tooltip: 'Print Delta JSON to log',
-          //   onPressed: () {
-          //     ScaffoldMessenger.of(context).showSnackBar(
-          //       const SnackBar(content: Text('The JSON Delta has been printed to the console.')),
-          //     );
-          //     debugPrint(jsonEncode(_controller.document.toDelta().toJson()));
-          //   },
-          // ),
         ],
       ),
       body: SafeArea(

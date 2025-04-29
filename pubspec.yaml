@@ -40,6 +40,8 @@ dependencies:
   fleather: ^1.22.0
 
   markdown_editor_plus: ^0.2.15
+  path_provider: ^2.1.5
+  file_picker: ^10.1.2
 
 
 dev_dependencies:

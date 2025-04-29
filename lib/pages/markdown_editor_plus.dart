@@ -1,5 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:markdown_editor_plus/markdown_editor_plus.dart';
+
+import '../utilities/read_save_file.dart';
 
 class MarkdownEditorPage extends StatefulWidget {
   const MarkdownEditorPage({super.key});
@@ -20,6 +23,44 @@ class _MarkdownEditorPageState extends State<MarkdownEditorPage> {
       appBar: AppBar(
         title: const Text("Editor Markdown Plus"),
         actions: [
+          IconButton(
+            icon: Icon(Icons.save),
+            onPressed: () {
+              final content = _controller.text;
+              if (kIsWeb) {
+                saveFileWeb(
+                  suggestedName: 'documento_markdown.md',
+                  content: content,
+                  mimeType: 'text/markdown',
+                  accept: {
+                    'text/markdown': ['.md'],
+                  },
+                );
+              } else {
+                saveToMobile("markdown_doc.md", content);
+              }
+            },
+          ),
+
+          IconButton(
+            icon: Icon(Icons.folder_open),
+            onPressed: () {
+              if (kIsWeb) {
+                openFileWeb((content) {
+                  setState(() {
+                    _controller.text = content;
+                  });
+                }, ".md");
+              } else {
+                readFile("markdown_doc.md", (content) {
+                  setState(() {
+                    _controller.text = content;
+                  });
+                }, "md");
+              }
+            },
+          ),
+
           IconButton(
             onPressed: () {
               setState(() {
