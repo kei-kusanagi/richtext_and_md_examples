@@ -33,60 +33,52 @@ class _HomeState extends State<Home> {
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width * 0.5,
                   height: MediaQuery.of(context).size.height * 0.3,
-                  child: Card(
-                    color: Colors.green,
-                    elevation: 4,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        ListTile(
-                          title: Column(
-                            children: [
-                              Text('Flutter Quill', style: Theme.of(context).textTheme.titleLarge),
-                              Text(
-                                '\n\nQuill supports a number of formats, both in UI controls and API calls.'
-                                '\nBy default, all formats are enabled and allowed in a Quill editor. They can be configured with the formats option. This is separate from adding a control in the Toolbar. For example, you can configure Quill to allow bolded content to be pasted into an editor that has no bold button in the toolbar.',
-                              ),
-                            ],
+                  child: SingleChildScrollView(
+                    child: Card(
+                      color: Colors.green,
+                      elevation: 4,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          Text('Flutter Quill', style: Theme.of(context).textTheme.titleLarge),
+                          Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Text(
+                                  '- Inline'
+                                  '\nBackground Color'
+                                  '\nBold'
+                                  '\nColor'
+                                  '\nFont'
+                                  '\nInline Code'
+                                  '\nItalic'
+                                  '\nLink'
+                                  '\nSize'
+                                  '\nStrikethrough'
+                                  '\nSuperscript/Subscript'
+                                  '\nUnderline',
+                                ),
+                                Text(
+                                  '- Block'
+                                  '\nBlockquote'
+                                  '\nHeader'
+                                  '\nIndent'
+                                  '\nList'
+                                  '\nText Alignment'
+                                  '\nText Direction'
+                                  '\nCode Block'
+                                  '\n- Embeds'
+                                  '\nFormula'
+                                  '\nImage'
+                                  '\nVideo',
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Text(
-                                '- Inline'
-                                '\nBackground Color'
-                                '\nBold'
-                                '\nColor'
-                                '\nFont'
-                                '\nInline Code'
-                                '\nItalic'
-                                '\nLink'
-                                '\nSize'
-                                '\nStrikethrough'
-                                '\nSuperscript/Subscript'
-                                '\nUnderline',
-                              ),
-                              Text(
-                                '- Block'
-                                '\nBlockquote'
-                                '\nHeader'
-                                '\nIndent'
-                                '\nList'
-                                '\nText Alignment'
-                                '\nText Direction'
-                                '\nCode Block'
-                                '\n- Embeds'
-                                '\nFormula'
-                                '\nImage'
-                                '\nVideo',
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -106,38 +98,31 @@ class _HomeState extends State<Home> {
                   width: MediaQuery.of(context).size.width * 0.5,
 
                   height: MediaQuery.of(context).size.height * 0.3,
-                  child: Card(
-                    color: Colors.deepPurple,
-                    elevation: 4,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        ListTile(
-                          title: Column(
-                            children: [
-                              Text(
-                                'Markdown Editor Plus',
-                                style: Theme.of(context).textTheme.titleLarge,
-                              ),
-                              Text(
-                                '\n\nThis is a fork of simple_markdown_editor by zahnia88 with contributions from fossfreaks',
-                              ),
-                            ],
+                  child: SingleChildScrollView(
+                    child: Card(
+                      color: Colors.deepPurple,
+                      elevation: 4,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          Text(
+                            'Markdown Editor Plus',
+                            style: Theme.of(context).textTheme.titleLarge,
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Text(
-                            '- Features '
-                            '\nConvert to Bold, Italic, Strikethrough'
-                            '\nConvert to Code, Quote, Links'
-                            '\nConvert to Heading (H1, H2, H3).'
-                            '\nConvert to unorder list and checkbox list'
-                            '\nSupport multiline convert'
-                            '\nSupport auto convert emoji',
+                          Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Text(
+                              '- Features '
+                              '\nConvert to Bold, Italic, Strikethrough'
+                              '\nConvert to Code, Quote, Links'
+                              '\nConvert to Heading (H1, H2, H3).'
+                              '\nConvert to unorder list and checkbox list'
+                              '\nSupport multiline convert'
+                              '\nSupport auto convert emoji',
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
